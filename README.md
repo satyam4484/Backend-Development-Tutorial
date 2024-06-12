@@ -5,3 +5,5 @@ Welcome to the Node.js tutorial! This guide will help you set up your Node.js en
 ## Table of Contents
 
 1. [Variables](variables.md)
+2. [Functions](functions.md)
+3. [Asynchronous JavaScript](promises.md)
