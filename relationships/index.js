@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
-const {User, Profile} = require('./models');
+const {add_user, add_article, get_articles} = require("./one_to_many");
+
+
 
 const port = 8000;
 
@@ -16,41 +18,15 @@ mongoose.connect(mongoURI)
     .catch((err) => console.error("MongoDB connection error:", err));
 
 
+app.post('/add-user',add_user);
+app.post('/add-article',add_article);
+app.get('/add-article',get_articles);
+app.get('/add-article/:userId',get_articles);
 
 
-app.post('/add-user',async (req,res) => {
-    try{
-        const data = req.body;
-
-        const newProfile = await Profile.create(data.profile);
-
-        const newUser = await User.create({
-            name:data.name,
-            email:data.email,
-            profile:newProfile._id
-        });
-
-        const user = await User.findById(newUser._id).populate('profile')
-        res.status(201).send({Messgae:"user created",user:user});
-
-    }catch(error) {
-        console.log("error--",error);
-        res.status(400).send({Messgae:'Error in add user'});
-    }
-})
 
 
-app.post('/add-profile',async (req,res) => {
-    try{
-        const data = req.body;
-        const newProfile = await Profile.create(data);
-        res.status(201).send({Messgae:"Profile created",Profile:newProfile});
 
-    }catch(error) {
-        console.log("error--",error);
-        res.status(400).send({Messgae:'Error in add Profile'});
-    }
-});
 
 
 // Start the Server
