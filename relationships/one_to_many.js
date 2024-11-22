@@ -32,8 +32,6 @@ const Article = model('Article',articleSchema);
 
 
 
-
-
 const add_user = async (req,res) => {
     try{
         const data = req.body;
