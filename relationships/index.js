@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // const {add_user, add_article, get_articles} = require("./one_to_many");
-const {add_student, add_course,enroll_course, get_students} = require('./many_many');
+const controller = require("./doubts_session/controller");
 
 
 
@@ -21,12 +21,34 @@ mongoose.connect(mongoURI)
 
 
 
-// Note: Many_to_Many
+// doubts session
+app.get('/category',controller.getCategory);
+app.post('/category',controller.addCategory);
 
-app.post('/add-student',add_student);
-app.get('/get-student',get_students);
-app.post('/add-courses',add_course);
-app.post('/enroll-courses',enroll_course);
+app.get('/subcategory',controller.getSubCategories);
+app.post('/subcategory',controller.addSubCategory);
+
+app.get('/user',controller.getUser);
+app.post('/user',controller.addUser);
+
+
+app.get('/articles',controller.getArticles);
+app.post('/articles',controller.addArticle);
+
+
+
+
+
+
+
+
+
+// // Note: Many_to_Many
+
+// app.post('/add-student',add_student);
+// app.get('/get-student',get_students);
+// app.post('/add-courses',add_course);
+// app.post('/enroll-courses',enroll_course);
 
 
 // Note: one_to_many
