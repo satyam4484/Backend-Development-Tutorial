@@ -18,6 +18,7 @@ const userSchema = new Schema({
     }
 });
 
+
 const profileSchema = new Schema({
     contact:{
         type: String,
